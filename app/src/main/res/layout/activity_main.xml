@@ -5,11 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+   <TextView
+       android:id="@+id/textView"
+       android:background="@color/design_default_color_primary"
+       android:text="Krajiny"
+       android:gravity="center"
+       android:textStyle="bold"
+       android:textSize="30dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+   </TextView>
 
    <ListView
+       android:layout_below="@id/textView"
        android:id="@+id/listview"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="wrap_content">
 
    </ListView>
 

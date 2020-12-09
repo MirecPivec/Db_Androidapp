@@ -5,34 +5,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    ListView listView;
-    ArrayList<String> arrayList = new ArrayList<>();
+    private ListView listView;
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listview);
-        //niečo som tu dopísal takže fon :D
 
-    //TODO test more data and chcek function work
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,addtoArrayfromDatabase());
+        dbHelper.insertDataCountry("Nemecko");
+        dbHelper.insertDataCountry("Slovensko");
+        dbHelper.insertDataCountry("Česko");
+        dbHelper.insertDataCountry("Anglicko");
+        arrayList = dbHelper.GetCountries();
 
-        listView.setAdapter(arrayAdapter);
-    }
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.list_view, arrayList);
 
-    private ArrayList<String> addtoArrayfromDatabase(){
-        //TODO Data from Database
-        arrayList.add("hello");
-        arrayList.add("okej");
-        arrayList.add("hello");
-        arrayList.add("okej");
 
-        return arrayList;
+        listView = findViewById(R.id.listview);
+        listView.setAdapter(adapter);
+
+
     }
 }
